@@ -1,0 +1,18 @@
+﻿<ContentPage
+    x:Class="Counter.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <VerticalStackLayout Padding="30">
+
+        <!-- Przycisk dodawania nowego licznika -->
+        <Button Text="Add Counter"
+                Clicked="OnAddCounterClicked"
+                HorizontalOptions="Center"
+                Margin="0,0,0,20"/>
+
+        <!-- Kontener dla wszystkich liczników -->
+        <VerticalStackLayout x:Name="CountersStack" Spacing="10"/>
+
+    </VerticalStackLayout>
+</ContentPage>
