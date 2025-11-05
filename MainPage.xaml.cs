@@ -6,7 +6,7 @@ namespace Counter;
 
 public partial class MainPage : ContentPage
 {
-    // Numer kolejnego licznika
+
     private int counterNumber = 0;
 
     private List<CounterData> counters = new List<CounterData>();
@@ -25,8 +25,6 @@ public partial class MainPage : ContentPage
         }
     }
 
-    // DODAWANIE NOWEGO LICZNIKA
-
     private void OnAddCounterClicked(object sender, EventArgs e)
     {
         counterNumber++;
@@ -34,7 +32,7 @@ public partial class MainPage : ContentPage
         SaveCounters(); 
     }
 
-    // TWORZENIE LICZNIKA NA EKRANIE
+    
     private void AddCounter(string name, int startValue)
     {
         var counterLabel = new Label
@@ -72,7 +70,6 @@ public partial class MainPage : ContentPage
             Spacing = 20
         };
 
-        // Układ pionowy dla całego licznika
         var counterLayout = new VerticalStackLayout
         {
             Children =
@@ -90,11 +87,9 @@ public partial class MainPage : ContentPage
             BackgroundColor = Colors.LightGray
         };
 
-        // Dodawanie licznika do kontenera w XAML
         CountersStack.Children.Add(counterLayout);
 
 
-        // sprawdzanie, żeby nie dodać licznika dwa razy
         bool exists = false;
 
         foreach (var c in counters)
@@ -112,7 +107,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    // AKTUALIZACJA WARTOŚCI LICZNIKA W LIŚCIE
+   
     private void UpdateCounterValue(string name, int newValue)
     {
         CounterData foundCounter = null;
@@ -134,7 +129,7 @@ public partial class MainPage : ContentPage
 
 
 
-    // ZAPIS LICZNIKÓW DO JSON
+
     private void SaveCounters()
     {
         try
@@ -148,7 +143,7 @@ public partial class MainPage : ContentPage
         }
     }
 
-    // WCZYTANIE LICZNIKÓW Z JSON
+
     private List<CounterData> LoadCounters()
     {
         try
@@ -171,7 +166,6 @@ public partial class MainPage : ContentPage
     }
 }
 
-// KLASA PRZECHOWUJĄCA DANE LICZNIKA
 public class CounterData
 {
     public string Name { get; set; } 
