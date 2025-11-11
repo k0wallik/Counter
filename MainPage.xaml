@@ -1,18 +1,38 @@
-﻿<ContentPage
-    x:Class="Counter.MainPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Counter.ViewModels"
+             x:Class="Counter.MainPage"
+             Title="Counters">
 
-    <VerticalStackLayout Padding="30">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
 
-        <!-- Przycisk dodawania nowego licznika -->
-        <Button Text="Add Counter"
-                Clicked="OnAddCounterClicked"
-                HorizontalOptions="Center"
-                Margin="0,0,0,20"/>
+            <Button Text="Add Counter"
+                    Command="{Binding AddCounterCommand}" />
 
-        <!-- Kontener dla wszystkich liczników -->
-        <VerticalStackLayout x:Name="CountersStack" Spacing="10"/>
+ 
+            <CollectionView ItemsSource="{Binding Counters}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10" BackgroundColor="LightGray">
+                            <Label Text="{Binding Name}" FontSize="20" HorizontalOptions="Center" />
+                            <Label Text="{Binding Value}" FontSize="32" HorizontalOptions="Center" />
 
-    </VerticalStackLayout>
+                            <HorizontalStackLayout HorizontalOptions="Center" Spacing="20">
+                                <Button Text="-"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=DecreaseCommand}"
+                                        CommandParameter="{Binding}" />
+                                <Button Text="+"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:MainPageViewModel}}, Path=IncreaseCommand}"
+                                        CommandParameter="{Binding}" />
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
 </ContentPage>
